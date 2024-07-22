@@ -3,34 +3,44 @@ import { createContext, useReducer, useState } from "react";
 // Initial context
 export const PostList = createContext({
   postlist: {},
-  addpost: () => { },
-  deletepost: () => { }
+  addpost: () => {},
+  deletepost: () => {},
 });
 console.log(PostList);
-const initialState = [{
-  id: 1,
-  title: "First Card",
-  body: "This is the first card",
-}, {
-  id: 2,
-  title: "Second Card",
-  body: "This is the second card",
-}];
+const initialState = [
+  {
+    id: 1,
+    title: "First Card",
+    body: "This is the first card",
+  },
+  {
+    id: 2,
+    title: "Second Card",
+    body: "This is the second card",
+  },
+];
 
 const reducer = (state, action) => {
+  let current = state
+  if (action.type === "DELETE") {
+    current = current.filter((data) => data.id !== action.payload.id);
+    return current
+  }
   return state;
 };
 
 const ContextPart = ({ children }) => {
   const [postreducer, dispatch] = useReducer(reducer, initialState);
 
-  const addPost = () => {
-  
-  };
+  const addPost = () => {};
 
   const deletePost = (id) => {
-    alert(id)
-    console.log(id);
+    dispatch({
+      type: "DELETE",
+      payload: {
+        id,
+      },
+    });
   };
 
   return (
