@@ -30,7 +30,6 @@ const ContextPart = ({ children }) => {
 
   const deletePost = (id) => {
     alert(id)
-    console.log(id);
   };
 
   return (
