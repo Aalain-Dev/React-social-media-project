@@ -4,7 +4,7 @@ import { TiDeleteOutline } from "react-icons/ti";
 
 export const Post = ({}) => {
   const { postreducer, deletePost} = useContext(PostList);
-  
+
   return (
     <div style = {{display:"flex",gap:"20px",position:"relative"}}>
       {postreducer.map((item, index) => (
@@ -15,6 +15,15 @@ export const Post = ({}) => {
 
           <div className="card-body">
             <h5 className="card-title">{item.title}</h5>
+        <div style = {{display:"flex",gap:"10px",}}>
+        {
+            item.tags.map((tag,index)=>{
+             return <p key = {index + 1} style = {{color:"#fff",background:"red",padding:"5px",borderRadius:"10px"}}>{tag}</p>
+            })
+          }
+        </div>
+
+        
             <p className="card-text">{item.body}</p>
             <a href="#" className="btn btn-primary">View</a>
           </div>
