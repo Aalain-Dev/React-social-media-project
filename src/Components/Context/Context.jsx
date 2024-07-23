@@ -35,7 +35,7 @@ const ContextPart = ({ children }) => {
   //         // tags
   //     }
   //   });
-  // };
+  // }; 
   const [data, setdata] = useState([]);
 
   useEffect(() => {
@@ -43,8 +43,8 @@ const ContextPart = ({ children }) => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        setdata(data);
       });
+      console.log("Running");
   }, []);
   const addPost = (res) => {
     dispatch({
