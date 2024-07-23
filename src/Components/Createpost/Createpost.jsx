@@ -8,28 +8,15 @@ const Createpost = () => {
   const bodyElement = useRef();
   const tagsElement = useRef();
 
-
-// Data testing
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  // Data testing
+  fetch("https://dummyjson.com/posts")
+    .then((res) => res.json())
+    .then((data) => {
+      return data;
+    });
 
   const submitform = (e) => {
     e.preventDefault();
-
 
     const res = {
       id: Date.now(),
@@ -40,7 +27,7 @@ const Createpost = () => {
     titleElement.current.value = "";
     bodyElement.current.value = "";
     tagsElement.current.value = "";
-    addPost(res)
+    addPost(res);
     console.log(res);
   };
 
