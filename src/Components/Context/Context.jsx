@@ -12,22 +12,21 @@ const initialState = [
     id: 1,
     title: "First Card",
     body: "This is the first card",
-    tags  : ['Cards',"Best cards"]
+    tags: ["Cards", "Best cards"],
   },
   {
     id: 2,
     title: "Second Card",
     body: "This is the second card",
-    tags  : ['Cards',"Best cards"]
-
+    tags: ["Cards", "Best cards"],
   },
 ];
 
 const reducer = (state, action) => {
-  let current = state
+  let current = state;
   if (action.type === "DELETE") {
     current = current.filter((data) => data.id !== action.payload.id);
-    return current
+    return current;
   }
   return state;
 };
@@ -35,7 +34,9 @@ const reducer = (state, action) => {
 const ContextPart = ({ children }) => {
   const [postreducer, dispatch] = useReducer(reducer, initialState);
 
-  const addPost = () => {};
+  const addPost = (title, body, tags) => {
+    console.log(`The Title is ${title}, Body is ${body}, Tags are ${tags}`);
+  };
 
   const deletePost = (id) => {
     dispatch({

@@ -2,9 +2,7 @@ import React, { useContext, useRef } from "react";
 import { PostList } from "../Context/Context";
 
 const Createpost = () => {
-  let title;
-  let body;
-  let tags;
+  const { addPost } = useContext(PostList);
 
   const titleElement = useRef();
   const bodyElement = useRef();
@@ -12,11 +10,13 @@ const Createpost = () => {
   const submitform = (e) => {
     e.preventDefault();
 
-    const res = {
-      title: titleElement.current.value,
-      body: bodyElement.current.value,
-      tags: tagsElement.current.value,
-    };
+    const title = titleElement.current.value;
+    const body = bodyElement.current.value;
+    const tags = tagsElement.current.value;
+
+    addPost(title,
+      body,
+      tags);
   };
 
   return (
@@ -24,7 +24,7 @@ const Createpost = () => {
       <form>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
-            Email Title
+            Enter  Title
           </label>
           <input
             type="text"
