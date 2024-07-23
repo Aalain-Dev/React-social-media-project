@@ -7,8 +7,29 @@ const Createpost = () => {
   const titleElement = useRef();
   const bodyElement = useRef();
   const tagsElement = useRef();
+
+
+// Data testing
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const submitform = (e) => {
     e.preventDefault();
+
 
     const res = {
       id: Date.now(),
