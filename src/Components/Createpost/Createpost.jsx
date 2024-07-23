@@ -10,15 +10,17 @@ const Createpost = () => {
   const submitform = (e) => {
     e.preventDefault();
 
-    const title = titleElement.current.value;
-    const body = bodyElement.current.value;
-    const tags = tagsElement.current.value;
+    const res = {
+      id: Date.now(),
+      title: titleElement.current.value,
+      body: bodyElement.current.value,
+      tags: tagsElement.current.value.split(" "),
+    };
     titleElement.current.value = "";
     bodyElement.current.value = "";
     tagsElement.current.value = "";
-    addPost(title,
-      body,
-      tags);
+    addPost(res)
+    console.log(res);
   };
 
   return (
@@ -26,7 +28,7 @@ const Createpost = () => {
       <form>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
-            Enter  Title
+            Enter Title
           </label>
           <input
             type="text"
@@ -42,7 +44,7 @@ const Createpost = () => {
             Enter Body
           </label>
           <input
-            type="password"
+            type="text"
             className="form-control"
             id="exampleInputPassword1"
             placeholder="Enter Body"
@@ -54,7 +56,7 @@ const Createpost = () => {
             Enter Tags
           </label>
           <input
-            type="password"
+            type="text"
             className="form-control"
             id="exampleInputPassword1"
             placeholder="Enter Tags"

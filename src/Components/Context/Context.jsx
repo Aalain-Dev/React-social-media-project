@@ -6,20 +6,8 @@ export const PostList = createContext({
   addpost: () => {},
   deletepost: () => {},
 });
-console.log(PostList);
 const initialState = [
-  {
-    id: 1,
-    title: "First Card",
-    body: "This is the first card",
-    tags: ["Cards", "Best cards"],
-  },
-  {
-    id: 2,
-    title: "Second Card",
-    body: "This is the second card",
-    tags: ["Cards", "Best cards"],
-  },
+ 
 ];
 
 const reducer = (state, action) => {
@@ -28,21 +16,35 @@ const reducer = (state, action) => {
     current = current.filter((data) => data.id !== action.payload.id);
     return current;
   }
+ else if (action.type === "ADD_POST"){
+  const res = [...state, action.payload]
+  return res
+ }
   return state;
 };
 
 const ContextPart = ({ children }) => {
   const [postreducer, dispatch] = useReducer(reducer, initialState);
 
-  const addPost = (title, body, tags) => {
-    console.log(`The Title is ${title}, Body is ${body}, Tags are ${tags}`);
-    dispatch({
-      type:"ADD_POST",
-      payload:{
-        
-      }
-    });
-  };
+  // const addPost = (title, body, tags) => {
+  //   console.log(`The Title is ${title}, Body is ${body}, Tags are ${tags}`);
+
+  //   dispatch({
+  //     type:"ADD_POST",
+  //     payload:{
+  //         id: Date.now(),
+  //         title,
+  //         body,
+  //         // tags
+  //     }
+  //   });
+  // };
+const addPost = (res)=>{
+dispatch({
+  type:"ADD_POST",
+  payload:res
+})
+}
 
   const deletePost = (id) => {
     dispatch({
