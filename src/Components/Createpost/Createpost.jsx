@@ -13,7 +13,9 @@ const Createpost = () => {
     const title = titleElement.current.value;
     const body = bodyElement.current.value;
     const tags = tagsElement.current.value;
-
+    titleElement.current.value = "";
+    bodyElement.current.value = "";
+    tagsElement.current.value = "";
     addPost(title,
       body,
       tags);

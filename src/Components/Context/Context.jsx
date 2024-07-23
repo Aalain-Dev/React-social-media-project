@@ -36,6 +36,12 @@ const ContextPart = ({ children }) => {
 
   const addPost = (title, body, tags) => {
     console.log(`The Title is ${title}, Body is ${body}, Tags are ${tags}`);
+    dispatch({
+      type:"ADD_POST",
+      payload:{
+        
+      }
+    });
   };
 
   const deletePost = (id) => {
