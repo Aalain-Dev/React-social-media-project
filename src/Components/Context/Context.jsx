@@ -1,4 +1,4 @@
-import { createContext, useReducer, useState } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 
 // Initial context
 export const PostList = createContext({
@@ -6,20 +6,17 @@ export const PostList = createContext({
   addpost: () => {},
   deletepost: () => {},
 });
-const initialState = [
- 
-];
+const initialState = [];
 
 const reducer = (state, action) => {
   let current = state;
   if (action.type === "DELETE") {
     current = current.filter((data) => data.id !== action.payload.id);
     return current;
+  } else if (action.type === "ADD_POST") {
+    const res = [...state, action.payload];
+    return res;
   }
- else if (action.type === "ADD_POST"){
-  const res = [...state, action.payload]
-  return res
- }
   return state;
 };
 
@@ -39,12 +36,23 @@ const ContextPart = ({ children }) => {
   //     }
   //   });
   // };
-const addPost = (res)=>{
-dispatch({
-  type:"ADD_POST",
-  payload:res
-})
-}
+  const [data, setdata] = useState([]);
+
+  useEffect(() => {
+    fetch("https://dummyjson.com/posts")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setdata(data);
+      });
+  }, []);
+  const addPost = (res) => {
+    dispatch({
+      type: "ADD_POST",
+      payload: res,
+    });
+  };
+ 
 
   const deletePost = (id) => {
     dispatch({

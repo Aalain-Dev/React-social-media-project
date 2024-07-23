@@ -9,11 +9,7 @@ const Createpost = () => {
   const tagsElement = useRef();
 
   // Data testing
-  fetch("https://dummyjson.com/posts")
-    .then((res) => res.json())
-    .then((data) => {
-      return data;
-    });
+ 
 
   const submitform = (e) => {
     e.preventDefault();
